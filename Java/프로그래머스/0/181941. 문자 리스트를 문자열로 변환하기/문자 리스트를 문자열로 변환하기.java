@@ -1,9 +1,9 @@
 class Solution {
     public String solution(String[] arr) {
-        String answer = "";
-        for(int i = 0; i < arr.length; i++){
-            answer += arr[i];
+        StringBuilder sb = new StringBuilder();
+        for(String s : arr){
+            sb.append(s);
         }
-        return answer;
+        return sb.toString();
     }
 }
