@@ -4,23 +4,22 @@ import java.util.List;
 
 class Solution {
     public int[] solution(int[] arr, int[][] queries) {
-        List<Integer> answer = new ArrayList<>();
-
+        int[] answer = new int[queries.length];
+        Arrays.fill(answer, -1);
+        int idx = 0;
         for (int[] query : queries) {
             int s = query[0];
             int e = query[1];
             int k = query[2];
-            int min = 1_000_000;
-            int count = 0;
+            int min = Integer.MAX_VALUE;
             for (int i = s; i <= e; i++) {
-                if (arr[i] > k) {
-                    count++;
-                    if (arr[i] < min) min = arr[i];
+                if (arr[i] > k && min > arr[i]) {
+                    min = arr[i];
                 }
             }
-            if (count > 0) answer.add(min);
-            else answer.add(-1);
+
+            answer[idx++] = min == Integer.MAX_VALUE ? -1 : min;
         }
-        return answer.stream().mapToInt(Integer::intValue).toArray();
+        return answer;
     }
 }
