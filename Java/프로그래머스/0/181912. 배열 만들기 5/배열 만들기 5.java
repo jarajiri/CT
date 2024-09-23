@@ -3,13 +3,20 @@ import java.util.List;
 
 class Solution {
     public int[] solution(String[] intStrs, int k, int s, int l) {
-        int[] answer = {};
-        List<Integer> list = new ArrayList<>();
-        for (String intStr : intStrs) {
-            int i = Integer.parseInt(intStr.substring(s, s + l));
-            if(i > k) list.add(i);
+        ArrayList<Integer> list = new ArrayList<>();
+
+        for (int i = 0; i < intStrs.length; i++) {
+            int tmp = Integer.parseInt(intStrs[i].substring(s, s + l));
+            if (tmp > k) {
+                list.add(tmp);
+            }
         }
-        answer = list.stream().mapToInt(Integer::intValue).toArray();
+        int[] answer = new int[list.size()];
+
+        for (int i = 0; i < answer.length; i++) {
+            answer[i] = list.get(i);
+        }
+
         return answer;
     }
 }
