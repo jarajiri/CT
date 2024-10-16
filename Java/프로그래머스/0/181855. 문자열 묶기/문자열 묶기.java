@@ -1,12 +1,17 @@
-import java.util.Arrays;
+import java.util.*;
 
 class Solution {
     public int solution(String[] strArr) {
-        int[] lengthArr = new int[31];
-        for (int i = 0; i < strArr.length; i++) {
-            lengthArr[strArr[i].length()]++;
+        int answer = 0;
+        Map<Integer, Integer> map = new HashMap<>();
+        for (String s : strArr) {
+            int n = s.length();
+            map.put(n, map.getOrDefault(n, 0) + 1);
         }
-        Arrays.sort(lengthArr);
-        return lengthArr[lengthArr.length-1];
+        Set<Integer> set = map.keySet();
+        for (int i : set) {
+            answer = Math.max(answer, map.get(i));
+        }
+        return answer;
     }
 }
