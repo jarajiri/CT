@@ -1,19 +1,20 @@
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 class Solution {
     public int[] solution(int[] arr, int[] delete_list) {
-        List<Integer> list = new ArrayList<>();
-        for (int i = 0; i < arr.length; i++) {
-            boolean bo = false;
-            for (int j = 0; j < delete_list.length; j++) {
-                if (arr[i] == delete_list[j]) {
-                    bo = true;
-                    break;
-                }
-            }
-            if(!bo) list.add(arr[i]);
+        Set<Integer> deleteSet = new HashSet<>();
+        for (int n : delete_list) {
+            deleteSet.add(n);
         }
+
+        List<Integer> list = new ArrayList<>();
+        for (int n : arr) {
+            if (!deleteSet.contains(n)) {
+                list.add(n);
+            }
+        }
+
         return list.stream().mapToInt(i -> i).toArray();
     }
+    
 }
