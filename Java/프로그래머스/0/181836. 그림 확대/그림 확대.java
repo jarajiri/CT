@@ -1,18 +1,19 @@
+import java.util.*;
+
 class Solution {
     public String[] solution(String[] picture, int k) {
-        String[] answer = new String[picture.length * k];
-        int idx = 0;
+        StringBuilder x = new StringBuilder();
+        StringBuilder y = new StringBuilder();
+        for (int i = 0; i < k; i++) {
+            x.append(".");
+            y.append("x");
+        }
+        List<String> list = new ArrayList<>();
         for (int i = 0; i < picture.length; i++) {
-            StringBuilder sb = new StringBuilder();
-            for (int j = 0; j < picture[i].length(); j++) {
-                for (int l = 0; l < k; l++) {
-                    sb.append(picture[i].charAt(j));
-                }
-            }
             for (int j = 0; j < k; j++) {
-                answer[idx++] = sb.toString();
+                list.add(picture[i].replaceAll("[.]",x.toString()).replaceAll("[x]",y.toString()));
             }
         }
-        return answer;
+        return list.toArray(new String[0]);
     }
 }
