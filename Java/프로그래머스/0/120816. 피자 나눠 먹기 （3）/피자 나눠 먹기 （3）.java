@@ -1,5 +1,5 @@
 class Solution {
-    public static int solution(double slice, int n) {
-        return (int)Math.ceil(n / slice);
+    public int solution(int slice, int n) {
+        return n % slice > 0 ? n / slice + 1 : n / slice;
     }
 }
