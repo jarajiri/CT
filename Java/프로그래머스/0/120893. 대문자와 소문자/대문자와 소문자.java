@@ -2,12 +2,15 @@ import java.util.*;
 
 class Solution {
     public String solution(String my_string) {
-        String[] arr = my_string.split("");
         StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < arr.length; i++) {
-            if (Character.isLowerCase(arr[i].charAt(0))) arr[i] = arr[i].toUpperCase();
-            else arr[i] = arr[i].toLowerCase();
-            sb.append(arr[i]);
+        for (int i = 0; i < my_string.length(); i++) {
+            char c = my_string.charAt(i);
+            if (Character.isUpperCase(c)) {
+                sb.append(String.valueOf(c).toLowerCase());
+            } else {
+                sb.append(String.valueOf(c).toUpperCase());
+
+            }
         }
         return sb.toString();
     }
