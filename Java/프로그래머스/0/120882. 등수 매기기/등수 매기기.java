@@ -1,29 +1,30 @@
 import java.util.*;
 
 class Solution {
-
 public int[] solution(int[][] score) {
-        int[] answer = new int[score.length];
-        int[] score_avg = new int[score.length];
-        
+        int N = score.length;
+        int[] sumScore = new int[N];
+        int[] answer = new int[N];
 
-        for (int i=0; i<score.length; i++) {
-            score_avg[i] = score[i][0] + score[i][1];
+        for (int i = 0; i < N; i++) {
+            sumScore[i] = score[i][0] + score[i][1];
         }
-        
-        System.out.println(score_avg);
-        
-        for (int i=0; i<score_avg.length; i++) {
-            int idx = 1;
-            for (int j=0; j<score_avg.length; j++) {
-                if (score_avg[i] < score_avg[j]) {
-                    idx++;
-                }
+
+        Integer[] sortedScore = Arrays.stream(sumScore).boxed().toArray(Integer[]::new);
+        Arrays.sort(sortedScore, Comparator.reverseOrder());
+
+        Map<Integer, Integer> rankScore = new HashMap<>();
+        int rank = 1;
+        for (int i = 0; i < N; i++) {
+            if (!rankScore.containsKey(sortedScore[i])) {
+                rankScore.put(sortedScore[i], rank);
             }
-            
-            answer[i] = idx;
+            rank++;
         }
-        
+
+        for (int i = 0; i < N; i++) {
+            answer[i] = rankScore.get(sumScore[i]);
+        }
+
         return answer;
-    }
-}
+}}
